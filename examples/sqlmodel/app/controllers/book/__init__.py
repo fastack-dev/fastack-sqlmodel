@@ -6,7 +6,6 @@ from fastapi import Request, status
 from fastapi.responses import Response
 from pydantic import BaseModel, conint, constr
 from sqlalchemy.sql.expression import desc
-from sqlmodel import select
 
 from fastack_sqlmodel.session import Session
 
@@ -20,8 +19,7 @@ class BookController(CRUDController):
     def retrieve(self, request: Request, id: int) -> Response:
         session: Session = request.state.db.open()
         with session:
-            qs = select(Book).where(Book.id == id)
-            book: Book = session.exec(qs).first()
+            book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
                 return self.json("Not found", status=status.HTTP_404_NOT_FOUND)
 
@@ -32,9 +30,9 @@ class BookController(CRUDController):
     ) -> Response:
         session: Session = request.state.db.open()
         with session:
-            books: List[Book] = session.exec(
-                select(Book).order_by(desc(Book.date_created))
-            ).all()
+            books: List[Book] = (
+                session.query(Book).order_by(desc(Book.date_created)).all()
+            )
             return self.get_paginated_response(books, page, page_size)
 
     def create(self, request: Request, body: BodyBookModel) -> Response:
@@ -48,7 +46,7 @@ class BookController(CRUDController):
     def update(self, request: Request, id: int, body: BodyBookModel) -> Response:
         session: Session = request.state.db.open()
         with session.begin():
-            book = session.exec(select(Book).where(Book.id == id)).first()
+            book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
                 return self.json("Not found", status=status.HTTP_404_NOT_FOUND)
 
@@ -60,7 +58,7 @@ class BookController(CRUDController):
     def destroy(self, request: Request, id: int) -> Response:
         session: Session = request.state.db.open()
         with session.begin():
-            book: Book = session.exec(select(Book).where(Book.id == id)).first()
+            book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
                 return self.json("Not found", status=status.HTTP_404_NOT_FOUND)
 
