@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pre-commit = "*"
+psycopg2-binary = "*"
+fastack = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
+
+[pipenv]
+allow_prereleases = true
