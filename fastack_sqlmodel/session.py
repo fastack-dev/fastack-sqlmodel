@@ -3,7 +3,6 @@ from typing import Any, Mapping, MutableMapping, Optional, Type, Union
 from sqlalchemy.engine import Engine
 from sqlalchemy.engine.base import Connection
 from sqlalchemy.orm.query import Query
-from sqlalchemy.orm.session import SessionTransaction
 from sqlmodel import Session as _Session
 
 
@@ -33,8 +32,19 @@ class Session(_Session):
             info=info,
             query_cls=query_cls,
         )
-        self.atomic: bool = False
 
-    def begin(self, subtransactions=False, nested=False, **kwds) -> SessionTransaction:
-        self.atomic = True
-        return super().begin(subtransactions=subtransactions, nested=nested, **kwds)
+    @property
+    def atomic(self) -> bool:
+        """Check if in atomic transaction
+
+        Returns:
+            True: if in atomic transaction
+        """
+
+        # FIXME: Is this correct for checking atomic transactions?
+        is_atomic = False
+        trans = self.get_transaction()
+        if trans and self._trans_context_manager:
+            is_atomic = True
+
+        return is_atomic
