@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastack-sqlmodel"
-version = "0.1.0"
+version = "0.1.1"
 description = "SQLModel integration for fastack"
 authors = ["aprilahijriyan <37798612+aprilahijriyan@users.noreply.github.com>"]
 license = "MIT"
