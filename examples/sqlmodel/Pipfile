@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pre-commit = "*"
 psycopg2-binary = "*"
-fastack = "*"
+fastack = ">=3.0.0"
 
 [dev-packages]
+pre-commit = "*"
 
 [requires]
 python_version = "3"
