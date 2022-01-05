@@ -1,12 +1,13 @@
 from typing import List
 
 from app.models import Book
-from fastack import CRUDController
+from fastack import ModelController
 from fastapi import Request, status
 from fastapi.responses import Response
 from pydantic import BaseModel, conint, constr
 from sqlalchemy.sql.expression import desc
 
+from fastack_sqlmodel.globals import db
 from fastack_sqlmodel.session import Session
 
 
@@ -15,9 +16,9 @@ class BodyBookModel(BaseModel):
     status: Book.Status = Book.Status.DRAFT
 
 
-class BookController(CRUDController):
+class BookController(ModelController):
     def retrieve(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
@@ -28,7 +29,7 @@ class BookController(CRUDController):
     def list(
         self, request: Request, page: conint(gt=0) = 1, page_size: conint(gt=0) = 10
     ) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session:
             books: List[Book] = (
                 session.query(Book).order_by(desc(Book.date_created)).all()
@@ -36,7 +37,7 @@ class BookController(CRUDController):
             return self.get_paginated_response(books, page, page_size)
 
     def create(self, request: Request, body: BodyBookModel) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             data = body.dict()
             book: Book = Book.create(session, **data)
@@ -44,7 +45,7 @@ class BookController(CRUDController):
         return self.json("Created", book)
 
     def update(self, request: Request, id: int, body: BodyBookModel) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
@@ -56,7 +57,7 @@ class BookController(CRUDController):
         return self.json("Updated", book)
 
     def destroy(self, request: Request, id: int) -> Response:
-        session: Session = request.state.db.open()
+        session: Session = db.open()
         with session.begin():
             book: Book = session.query(Book).where(Book.id == id).first()
             if not book:
