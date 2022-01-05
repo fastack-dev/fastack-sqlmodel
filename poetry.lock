@@ -186,7 +186,7 @@ python-versions = "*"
 
 [[package]]
 name = "fastack"
-version = "3.0.0"
+version = "3.4.0"
 description = "fastack is an intuitive framework based on FastAPI"
 category = "main"
 optional = false
@@ -198,6 +198,7 @@ cookiecutter = ">=1.7.3,<2.0.0"
 fastapi = ">=0.70.1,<0.71.0"
 typer = ">=0.4.0,<0.5.0"
 uvicorn = ">=0.16.0,<0.17.0"
+Werkzeug = ">=2.0.2,<3.0.0"
 
 [[package]]
 name = "fastapi"
@@ -744,6 +745,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "werkzeug"
+version = "2.0.2"
+description = "The comprehensive WSGI web application library."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+watchdog = ["watchdog"]
+
+[[package]]
 name = "zipp"
 version = "3.6.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -758,7 +770,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "c1f6f9daf423183bef8b9e47bc9126582bc04b95f551777fc839476347550df5"
+content-hash = "1e0bac0980956aac384fdd57e880e135abb2b72786091c1766fddd208c076f06"
 
 [metadata.files]
 anyio = [
@@ -830,8 +842,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 fastack = [
-    {file = "fastack-3.0.0-py3-none-any.whl", hash = "sha256:405d7b1cbbd2dfc90211af23b16c2b9a46bd66ac38b866414a389e669e398eaf"},
-    {file = "fastack-3.0.0.tar.gz", hash = "sha256:b3e107fcdfe118de1972fea61fa868af36fbbf04de45fa20d6f78bc5971b0301"},
+    {file = "fastack-3.4.0-py3-none-any.whl", hash = "sha256:b5b7f90836cf5a75595391ed5e65bce859b976f3acc623a83b4c62b1f80ef8bc"},
+    {file = "fastack-3.4.0.tar.gz", hash = "sha256:d2c79efb1785e750a5a6c329f04ea359c70d0c8f0e4ff721e3240e4cf63a8ccd"},
 ]
 fastapi = [
     {file = "fastapi-0.70.1-py3-none-any.whl", hash = "sha256:5367226c7bcd7bfb2e17edaf225fd9a983095b1372281e9a3eb661336fb93748"},
@@ -1209,6 +1221,10 @@ virtualenv = [
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},
     {file = "wcwidth-0.2.5.tar.gz", hash = "sha256:c4d647b99872929fdb7bdcaa4fbe7f01413ed3d98077df798530e5b04f116c83"},
+]
+werkzeug = [
+    {file = "Werkzeug-2.0.2-py3-none-any.whl", hash = "sha256:63d3dc1cf60e7b7e35e97fa9861f7397283b75d765afcaefd993d6046899de8f"},
+    {file = "Werkzeug-2.0.2.tar.gz", hash = "sha256:aa2bb6fc8dee8d6c504c0ac1e7f5f7dc5810a9903e793b6f715a9f015bdadb9a"},
 ]
 zipp = [
     {file = "zipp-3.6.0-py3-none-any.whl", hash = "sha256:9fe5ea21568a0a70e50f273397638d39b03353731e6cbbb3fd8502a33fec40bc"},
