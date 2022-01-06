@@ -186,7 +186,7 @@ python-versions = "*"
 
 [[package]]
 name = "fastack"
-version = "3.4.0"
+version = "3.4.1"
 description = "fastack is an intuitive framework based on FastAPI"
 category = "main"
 optional = false
@@ -770,7 +770,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "1e0bac0980956aac384fdd57e880e135abb2b72786091c1766fddd208c076f06"
+content-hash = "5a0cd0cdaf2d0166bcd2ce506b48c29591b05cf2796d29e15c392001868479c6"
 
 [metadata.files]
 anyio = [
@@ -842,8 +842,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 fastack = [
-    {file = "fastack-3.4.0-py3-none-any.whl", hash = "sha256:b5b7f90836cf5a75595391ed5e65bce859b976f3acc623a83b4c62b1f80ef8bc"},
-    {file = "fastack-3.4.0.tar.gz", hash = "sha256:d2c79efb1785e750a5a6c329f04ea359c70d0c8f0e4ff721e3240e4cf63a8ccd"},
+    {file = "fastack-3.4.1-py3-none-any.whl", hash = "sha256:abc3f1bd3bea544b8f4df12a60d4dd5162100d7d7aecfd57571975aafc6be742"},
+    {file = "fastack-3.4.1.tar.gz", hash = "sha256:2ffd01e590526b92da6be0715f29cd2e2951cb6a72d93fd90a1beb6beebe679a"},
 ]
 fastapi = [
     {file = "fastapi-0.70.1-py3-none-any.whl", hash = "sha256:5367226c7bcd7bfb2e17edaf225fd9a983095b1372281e9a3eb661336fb93748"},
