@@ -30,7 +30,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fastack = "^3.4.0"
+fastack = "^3.4.1"
 sqlmodel = "^0.0.6"
 
 [tool.poetry.dev-dependencies]
