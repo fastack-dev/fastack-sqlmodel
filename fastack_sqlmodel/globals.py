@@ -1,6 +1,11 @@
-from fastack.globals import state
-from werkzeug.local import LocalProxy
+from fastack.globals import state, LocalProxy
 
 from fastack_sqlmodel import DatabaseState
 
-db: DatabaseState = LocalProxy(lambda: getattr(state, "db", None))
+def _get_db():
+    db = getattr(state, "db", None)
+    if not isinstance(db, DatabaseState):
+        raise RuntimeError("Database not initialized")
+    return db
+
+db: DatabaseState = LocalProxy(_get_db)
