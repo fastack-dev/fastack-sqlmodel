@@ -2,7 +2,6 @@ import os
 
 from fastack import Fastack
 from sqlalchemy.engine import Engine
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import close_all_sessions
 from sqlmodel import SQLModel, create_engine
 
@@ -12,11 +11,10 @@ from fastack_sqlmodel.session import Session
 class DatabaseState:
     def __init__(self, engine: Engine):
         self.engine = engine
-        self.sessionmaker = sessionmaker(class_=Session)
 
     def open(self, engine: Engine = None, **kwds) -> Session:
         engine = engine or self.engine
-        session = self.sessionmaker(bind=engine, **kwds)
+        session = Session(bind=engine, **kwds)
         return session
 
 
